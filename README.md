@@ -2,7 +2,7 @@
 
 | Version | Date | Author | Description |
 | --- | --- | --- | --- |
-| 2.0.0 | 2026-01-15 | Elix Team | Complete rewrite for ticket-based workflow |
+| 2.0.0 | 2026-01-15 | That Le | Complete rewrite for ticket-based workflow |
 
 ## Table of Contents
 

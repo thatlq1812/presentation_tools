@@ -2,7 +2,7 @@
 
 | Version | Date | Author | Description |
 | --- | --- | --- | --- |
-| 2.0.0 | 2026-01-15 | Elix Team | Bilingual template with source data section |
+| 2.0.0 | 2026-01-15 | That Le | Bilingual template with source data section |
 
 ---
 

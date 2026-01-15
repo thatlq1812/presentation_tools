@@ -6,7 +6,7 @@ applyTo: "**"
 
 | Version | Date | Author | Description |
 | --- | --- | --- | --- |
-| 2.1.0 | 2026-01-15 | Elix Team | Unified instruction for AI Agent and Copilot |
+| 2.1.0 | 2026-01-15 | That Le | Unified instruction for AI Agent and Copilot |
 
 ---
 

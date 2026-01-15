@@ -5,7 +5,7 @@
 # =============================================================================
 # Version: 2.0.0
 # Date: 2026-01-15
-# Author: Elix Team
+# Author: That Le
 # Description: Automated setup for Windows (Git Bash) and Linux/Mac
 # =============================================================================
 

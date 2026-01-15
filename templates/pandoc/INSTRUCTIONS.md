@@ -2,7 +2,7 @@
 
 | Version | Date | Author | Description |
 | --- | --- | --- | --- |
-| 1.0.0 | 2026-01-15 | Elix Team | Initial release |
+| 1.0.0 | 2026-01-15 | That Le | Initial release |
 
 ## About
 

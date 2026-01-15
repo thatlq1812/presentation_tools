@@ -2,7 +2,7 @@
 
 | Version | Date | Author | Description |
 | --- | --- | --- | --- |
-| 1.0.0 | 2026-01-15 | Elix Team | Complete layout definition for AI content generation |
+| 1.0.0 | 2026-01-15 | That Le | Complete layout definition for AI content generation |
 
 ---
 

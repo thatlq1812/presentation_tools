@@ -2,7 +2,7 @@
 
 | Version | Date | Author | Description |
 | --- | --- | --- | --- |
-| 1.0.0 | 2026-01-15 | Elix Team | Quality standards for AI-generated content |
+| 1.0.0 | 2026-01-15 | That Le | Quality standards for AI-generated content |
 
 ---
 
