@@ -1,0 +1,41 @@
+{
+  // Editor settings
+  "editor.fontSize": 14,
+  "editor.wordWrap": "on",
+  "editor.lineHeight": 1.6,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "selection",
+  "editor.bracketPairColorization.enabled": true,
+  // Files
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/node_modules": true
+  },
+  // Markdown
+  "markdown.preview.fontSize": 14,
+  "markdown.preview.lineHeight": 1.6,
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    },
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  // Marp
+  "markdown.marp.enableHtml": true,
+  "markdown.marp.chromePath": "",
+  // Copilot
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": true,
+    "plaintext": true
+  },
+  // Terminal
+  "terminal.integrated.defaultProfile.windows": "PowerShell"
+}

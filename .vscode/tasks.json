@@ -1,0 +1,150 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build PDF (Pandoc)",
+      "type": "shell",
+      "command": "pandoc",
+      "args": [
+        "${file}",
+        "-o",
+        "${fileDirname}/output/${fileBasenameNoExtension}.pdf",
+        "--pdf-engine=xelatex",
+        "-V",
+        "geometry:margin=2.5cm",
+        "-V",
+        "fontsize=13pt",
+        "-V",
+        "mainfont=Times New Roman",
+        "-V",
+        "linestretch=1.5",
+        "--toc",
+        "--toc-depth=3",
+        "-N",
+        "--highlight-style=tango"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build PDF (Simple)",
+      "type": "shell",
+      "command": "pandoc",
+      "args": [
+        "${file}",
+        "-o",
+        "${fileDirname}/output/${fileBasenameNoExtension}.pdf",
+        "--pdf-engine=xelatex",
+        "-V",
+        "mainfont=Times New Roman"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build DOCX (Pandoc)",
+      "type": "shell",
+      "command": "pandoc",
+      "args": [
+        "${file}",
+        "-o",
+        "${fileDirname}/output/${fileBasenameNoExtension}.docx",
+        "--toc"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build DOCX with Template",
+      "type": "shell",
+      "command": "pandoc",
+      "args": [
+        "${file}",
+        "-o",
+        "${fileDirname}/output/${fileBasenameNoExtension}.docx",
+        "--reference-doc=${workspaceFolder}/templates/pandoc/reference.docx",
+        "--toc"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build HTML",
+      "type": "shell",
+      "command": "pandoc",
+      "args": [
+        "${file}",
+        "-o",
+        "${fileDirname}/output/${fileBasenameNoExtension}.html",
+        "-s",
+        "--toc",
+        "--highlight-style=tango"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Export Marp Slides (PDF)",
+      "type": "shell",
+      "command": "npx",
+      "args": [
+        "@marp-team/marp-cli",
+        "${file}",
+        "--pdf",
+        "-o",
+        "${fileDirname}/output/${fileBasenameNoExtension}_slides.pdf"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Export Marp Slides (PPTX)",
+      "type": "shell",
+      "command": "npx",
+      "args": [
+        "@marp-team/marp-cli",
+        "${file}",
+        "--pptx",
+        "-o",
+        "${fileDirname}/output/${fileBasenameNoExtension}_slides.pptx"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build All (PDF + DOCX)",
+      "dependsOn": [
+        "Build PDF (Pandoc)",
+        "Build DOCX (Pandoc)"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Create Output Folder",
+      "type": "shell",
+      "command": "mkdir",
+      "args": [
+        "-Force",
+        "${fileDirname}/output"
+      ],
+      "windows": {
+        "command": "powershell",
+        "args": [
+          "-Command",
+          "New-Item -ItemType Directory -Force -Path '${fileDirname}/output'"
+        ]
+      },
+      "problemMatcher": []
+    }
+  ]
+}

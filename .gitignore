@@ -1,0 +1,44 @@
+# Output files
+output/
+*.pdf
+*.docx
+*.pptx
+*.html
+
+# Keep example outputs
+!examples/output/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.aux
+*.toc
+*.out
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+
+# Node modules (if using marp-cli)
+node_modules/
+package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+.env
+
+# Archives
+*.zip
+*.tar.gz
+*.rar

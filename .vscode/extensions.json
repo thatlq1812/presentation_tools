@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "marp-team.marp-vscode",
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "yzhang.markdown-all-in-one",
+    "shd101wyy.markdown-preview-enhanced",
+    "bierner.markdown-mermaid",
+    "streetsidesoftware.code-spell-checker",
+    "yzane.markdown-pdf",
+    "PKief.material-icon-theme",
+    "esbenp.prettier-vscode"
+  ]
+}
