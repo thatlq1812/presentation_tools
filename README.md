@@ -1,83 +1,276 @@
-# Presentation Tools
+# CONTENT GENERATION TOOL - SETUP GUIDE
 
 | Version | Date | Author | Description |
 | --- | --- | --- | --- |
-| 1.0.0 | 2026-01-15 | Elix Team | Initial release |
+| 2.0.0 | 2026-01-15 | Elix Team | Complete rewrite for ticket-based workflow |
+
+## Table of Contents
+
+1. [Overview](#overview)
+2. [System Requirements](#system-requirements)
+3. [Phase 1: Package Manager Installation](#phase-1-package-manager-installation)
+4. [Phase 2: Core Tools Installation](#phase-2-core-tools-installation)
+5. [Phase 3: VS Code Configuration](#phase-3-vs-code-configuration)
+6. [Phase 4: Workflow Usage](#phase-4-workflow-usage)
+7. [Troubleshooting](#troubleshooting)
+
+---
 
 ## Overview
 
-**Presentation Tools** is a complete toolkit designed to help students and professionals create academic presentations and documents **5-10x faster** using modern tools:
+This tool provides a standardized workflow for generating academic content (presentations, reports) using AI assistance. The system uses a **ticket-based approach** where users fill in requirements, and an AI Agent generates structured content.
 
-- **VS Code** as the primary editor
-- **GitHub Copilot** for AI-assisted writing
-- **Markdown** for content structure
-- **Pandoc** for document conversion (PDF, DOCX)
-- **Marp** for slide generation
+**Core Principles:**
 
-### Core Principle: "Single Source of Truth"
+- Decoupling: Separate content creation from presentation formatting
+- Standardization: Enforce clear thinking through structured input
+- Reproducibility: Consistent environment across all users
 
-Write once in Markdown, export to multiple formats:
+**Workflow Summary:**
 
+1. User fills in `ticket.md` with requirements
+2. AI Agent processes the ticket
+3. System generates output in timestamped folder (`output/YYYYMMDD_HHmm/`)
+4. Content follows predefined slide layout schemas
+
+---
+
+## System Requirements
+
+- Operating System: Windows 10/11 (64-bit)
+- RAM: Minimum 4GB (8GB recommended)
+- Disk Space: Minimum 5GB free space
+- Internet connection for initial setup
+
+---
+
+## Phase 1: Package Manager Installation
+
+Chocolatey is a package manager for Windows that automates software installation. This ensures all users have identical environments.
+
+### Step 1.1: Open PowerShell as Administrator
+
+1. Press `Windows + X`
+2. Select "Windows PowerShell (Admin)" or "Terminal (Admin)"
+3. Click "Yes" when prompted by User Account Control
+
+### Step 1.2: Install Chocolatey
+
+Copy and paste the following command into PowerShell:
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
-                    ┌─────────────────┐
-                    │   Markdown      │
-                    │   (.md file)    │
-                    └────────┬────────┘
-                             │
-         ┌───────────────────┼───────────────────┐
-         ▼                   ▼                   ▼
-┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
-│  PDF Report     │ │  PDF Slides     │ │    DOCX         │
-│  (via Pandoc)   │ │  (via Marp)     │ │  (via Pandoc)   │
-└─────────────────┘ └─────────────────┘ └─────────────────┘
+
+### Step 1.3: Verify Installation
+
+Close PowerShell and reopen it as Administrator. Run:
+
+```powershell
+choco --version
+```
+
+Expected output: Version number (e.g., `2.2.2`)
+
+---
+
+## Phase 2: Core Tools Installation
+
+Run the following commands in PowerShell (Admin). Each command installs a required tool.
+
+### Step 2.1: Install Git
+
+Git is required for version control and repository management.
+
+```powershell
+choco install git -y
+```
+
+Verify installation:
+
+```powershell
+git --version
+```
+
+### Step 2.2: Install VS Code
+
+Visual Studio Code is the primary editor for this workflow.
+
+```powershell
+choco install vscode -y
+```
+
+After installation, you may need to restart PowerShell or your computer.
+
+### Step 2.3: Install Pandoc
+
+Pandoc converts Markdown to PDF, DOCX, and other formats.
+
+```powershell
+choco install pandoc -y
+```
+
+Verify installation:
+
+```powershell
+pandoc --version
+```
+
+### Step 2.4: Install MiKTeX
+
+MiKTeX is a LaTeX distribution required for PDF generation with proper typography.
+
+```powershell
+choco install miktex -y
+```
+
+**Important:** After installation, open MiKTeX Console and:
+
+1. Go to "Settings"
+2. Set "Install missing packages on-the-fly" to "Yes"
+3. Click "Check for updates" and install any available updates
+
+### Step 2.5: Install Node.js (Optional)
+
+Required only if you plan to use additional scripting tools.
+
+```powershell
+choco install nodejs-lts -y
 ```
 
 ---
 
-## Getting Started Flow
+## Phase 3: VS Code Configuration
 
-### For First-Time Users
+### Step 3.1: Install Required Extensions
 
-Follow this order:
+Open VS Code and press `Ctrl + Shift + X` to open Extensions panel. Install:
 
-```
-Step 1 ─────────────────────────────────────────────────────────────
-│ Setup Complete Guide
-│ Install VS Code, Git, Pandoc, MiKTeX, Extensions
-│ 📄 docs/guides/00_setup_complete.md
-└───────────────────────────────────────────────────────────────────
+| Extension Name | Purpose |
+| --- | --- |
+| Markdown All in One | Markdown editing and preview |
+| GitLens | Git integration and history |
+| Markdown Preview Enhanced | Advanced preview features |
 
-Step 2 ─────────────────────────────────────────────────────────────
-│ Learn Markdown Basics
-│ Understand syntax, formatting, diagrams
-│ 📄 docs/guides/01_markdown_basics.md
-└───────────────────────────────────────────────────────────────────
+### Step 3.2: Configure Git Identity
 
-Step 3 ─────────────────────────────────────────────────────────────
-│ Master Pandoc
-│ Convert Markdown to PDF, DOCX
-│ 📄 docs/guides/02_pandoc_guide.md
-└───────────────────────────────────────────────────────────────────
+Open VS Code Terminal (`Ctrl + Backtick`) and run:
 
-Step 4 ─────────────────────────────────────────────────────────────
-│ VS Code Tips & Tricks
-│ Shortcuts, Copilot usage, snippets
-│ 📄 docs/guides/03_vscode_tips.md
-└───────────────────────────────────────────────────────────────────
-
-Step 5 ─────────────────────────────────────────────────────────────
-│ Student Workflow
-│ The 5-step process: SKELETON → ANCHOR → EXPAND → REVIEW → EXPORT
-│ 📄 docs/guides/workflow_student.md
-└───────────────────────────────────────────────────────────────────
+```bash
+git config --global user.name "Your Full Name"
+git config --global user.email "your.email@example.com"
 ```
 
-### Quick Start (Experienced Users)
+### Step 3.3: Configure VS Code Settings
 
-1. Clone this repository
-2. Open in VS Code
-3. Install recommended extensions (prompt will appear)
-4. Start from a template in `templates/`
+Press `Ctrl + ,` to open Settings. Search and configure:
+
+| Setting | Value |
+| --- | --- |
+| `files.autoSave` | `afterDelay` |
+| `editor.wordWrap` | `on` |
+| `editor.fontSize` | `14` |
+| `markdown.preview.fontSize` | `14` |
+
+---
+
+## Phase 4: Workflow Usage
+
+### Step 4.1: Clone or Download Repository
+
+Option A - Clone with Git:
+
+```bash
+git clone <repository-url>
+cd presentation_tools
+```
+
+Option B - Download ZIP:
+
+1. Download the repository as ZIP
+2. Extract to a folder of your choice
+3. Open the folder in VS Code
+
+### Step 4.2: Create a New Ticket
+
+1. Open `ticket.md` in the root folder
+2. Duplicate it or edit directly
+3. Fill in all required sections:
+   - Project Information
+   - Requirements (Topic, Audience, Tone)
+   - Constraints (Slide count, Detail level)
+   - Key Sections (Outline)
+   - Layout Strategy
+
+### Step 4.3: Process Ticket with AI Agent
+
+1. Open GitHub Copilot Chat in VS Code
+2. Attach the `ticket.md` file
+3. Reference the `schemas/slide_layouts.md` for layout definitions
+4. Request content generation following the schema format
+
+### Step 4.4: Review Output
+
+Generated content will be placed in:
+
+```
+output/YYYYMMDD_HHmm/
+    raw_content.md    # Structured content with layout tags
+    metadata.json     # Project metadata
+```
+
+### Step 4.5: Build Final Documents
+
+Use VS Code tasks to convert content:
+
+- `Ctrl + Shift + B` - Build PDF (default)
+- `Ctrl + Shift + P` then "Tasks: Run Task" then Select format
+
+---
+
+## Troubleshooting
+
+### Problem: Chocolatey command not found
+
+**Solution:** Restart PowerShell after installation. If still not working:
+
+```powershell
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+```
+
+### Problem: Pandoc PDF generation fails
+
+**Solution:** Ensure MiKTeX is installed and configured:
+
+1. Open MiKTeX Console
+2. Check for updates
+3. Enable "Install missing packages on-the-fly"
+4. Try building again
+
+### Problem: Git authentication fails
+
+**Solution:** Configure Git credential manager:
+
+```bash
+git config --global credential.helper manager
+```
+
+### Problem: VS Code cannot find Pandoc
+
+**Solution:** Add Pandoc to system PATH:
+
+1. Open System Properties then Environment Variables
+2. Edit "Path" under System variables
+3. Add: `C:\Program Files\Pandoc`
+4. Restart VS Code
+
+### Problem: LaTeX fonts missing
+
+**Solution:** Install required fonts via MiKTeX:
+
+1. Open MiKTeX Console
+2. Go to "Packages"
+3. Search and install: `times`, `fontspec`, `unicode-math`
 
 ---
 
@@ -85,207 +278,48 @@ Step 5 ────────────────────────�
 
 ```
 presentation_tools/
-├── .github/
-│   ├── copilot-instructions.md       # AI behavior configuration
-│   └── project-instructions.md       # Project guidelines
-├── .vscode/
-│   ├── extensions.json               # Recommended extensions
-│   ├── settings.json                 # Workspace settings
-│   └── tasks.json                    # Build tasks
-├── docs/
-│   ├── guides/
-│   │   ├── 00_setup_complete.md      # Full setup guide
-│   │   ├── 01_markdown_basics.md     # Markdown tutorial
-│   │   ├── 02_pandoc_guide.md        # Pandoc usage
-│   │   ├── 03_vscode_tips.md         # VS Code tips
-│   │   ├── quick_start.md            # 10-minute quickstart
-│   │   └── workflow_student.md       # Student workflow
-│   └── instructions/
-│       └── instruction_00.md         # Background discussion
-├── templates/
-│   ├── marp/
-│   │   ├── template_academic.md      # General academic slides
-│   │   ├── template_technical.md     # Technical project slides
-│   │   └── template_thesis.md        # Thesis defense slides
-│   ├── pandoc/
-│   │   └── reference.docx            # DOCX template
-│   └── prompts/
-│       └── prompt_structure.md       # AI prompt templates
-├── examples/                          # Example documents
-└── README.md
+    README.md                       # This file (Setup guide)
+    ticket.md                       # Input template (bilingual)
+    .github/
+        copilot-instructions.md     # AI Agent instructions
+    schemas/
+        slide_layouts.md            # 15 layout definitions
+        content_guidelines.md       # Content quality rules
+    templates/
+        pandoc/
+            reference.docx          # DOCX template
+    output/
+        YYYYMMDD_HHmm/              # Generated content folders
+    scripts/
+        setup.sh                    # Setup script (Git Bash)
+        setup.ps1                   # Setup script (PowerShell)
+    examples/
+        example_generated_content.md  # Sample output
 ```
 
 ---
 
-## Workflow Overview
+## Quick Setup (Automated)
 
-### The 5-Step Process
+For users who prefer automated setup, run one of these scripts:
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  1. SKELETON (2-3 min)                                          │
-│     Create heading structure                                    │
-│     # Title → ## Section → ### Subsection                       │
-├─────────────────────────────────────────────────────────────────┤
-│  2. ANCHOR (5-10 min)                                           │
-│     Write first sentence for each section                       │
-│     This tells AI what direction to go                          │
-├─────────────────────────────────────────────────────────────────┤
-│  3. EXPAND (10-15 min)                                          │
-│     Let Copilot fill in details                                 │
-│     Tab to accept, Esc to skip                                  │
-├─────────────────────────────────────────────────────────────────┤
-│  4. REVIEW (5-10 min)                                           │
-│     Read aloud, edit, verify facts                              │
-│     Remove AI fluff                                             │
-├─────────────────────────────────────────────────────────────────┤
-│  5. EXPORT (1-2 min)                                            │
-│     pandoc → PDF/DOCX                                           │
-│     Marp → Slides                                               │
-└─────────────────────────────────────────────────────────────────┘
-
-Total Time: 25-40 minutes (vs 2-3 hours traditional)
-```
-
----
-
-## Documentation Index
-
-### Setup & Basics
-
-| Document | Description | Time |
-| --- | --- | --- |
-| [Setup Complete](docs/guides/00_setup_complete.md) | Full installation guide | 15-20 min |
-| [Markdown Basics](docs/guides/01_markdown_basics.md) | Learn Markdown syntax | 30 min |
-| [Pandoc Guide](docs/guides/02_pandoc_guide.md) | Master document conversion | 20 min |
-| [VS Code Tips](docs/guides/03_vscode_tips.md) | Editor productivity | 15 min |
-
-### Workflow & Templates
-
-| Document | Description |
-| --- | --- |
-| [Quick Start](docs/guides/quick_start.md) | Start in 10 minutes |
-| [Student Workflow](docs/guides/workflow_student.md) | Complete 5-step process |
-| [Prompt Templates](templates/prompts/prompt_structure.md) | AI prompts for content |
-
-### Slide Templates
-
-| Template | Use Case |
-| --- | --- |
-| [Academic](templates/marp/template_academic.md) | General presentations |
-| [Technical](templates/marp/template_technical.md) | Technical projects |
-| [Thesis](templates/marp/template_thesis.md) | Thesis defense |
-
----
-
-## Why This Approach?
-
-| Aspect | Traditional | This Method |
-| --- | --- | --- |
-| Time | 2-3 hours | 25-40 minutes |
-| Sync | Manual copy between report & slides | Auto-sync from one source |
-| Formatting | Click buttons repeatedly | Write once, style via templates |
-| Version Control | file_v1, file_v2, file_final... | Git history |
-| AI Assistance | Copy-paste to ChatGPT | Inline Copilot suggestions |
-
-### Time Savings: **70-80%**
-
----
-
-## Requirements
-
-### Software
-
-| Software | Purpose | Required |
-| --- | --- | --- |
-| VS Code | Editor | Yes |
-| Git | Clone & version control | Yes |
-| Pandoc | Document conversion | Yes |
-| MiKTeX/TeX Live | PDF generation | Yes (for PDF) |
-
-### Accounts
-
-| Account | Purpose | Required |
-| --- | --- | --- |
-| GitHub | Copilot, Git | Yes |
-| GitHub Copilot | AI assistance | Recommended |
-
-### Skills
-
-- Basic typing
-- No programming required
-
----
-
-## Installation Quick Commands
-
-### Windows (PowerShell)
-
+**PowerShell (Recommended for Windows):**
 ```powershell
-# Install with winget (if available)
-winget install Microsoft.VisualStudioCode
-winget install Git.Git
-winget install JohnMacFarlane.Pandoc
-winget install MiKTeX.MiKTeX
+cd scripts
+.\setup.ps1
 ```
 
-### Clone This Repository
-
-```powershell
-git clone https://github.com/your-username/presentation_tools.git
-cd presentation_tools
-code .
+**Git Bash:**
+```bash
+cd scripts
+bash setup.sh
 ```
 
 ---
 
-## Build Commands
+## References
 
-### Using Pandoc (in terminal)
-
-```powershell
-# Markdown → PDF
-pandoc document.md -o output.pdf --pdf-engine=xelatex -V mainfont="Times New Roman"
-
-# Markdown → DOCX
-pandoc document.md -o output.docx
-
-# With Table of Contents
-pandoc document.md -o output.pdf --toc -N --pdf-engine=xelatex
-```
-
-### Using VS Code Tasks
-
-`Ctrl+Shift+P` → "Tasks: Run Task" → Select build task
-
----
-
-## Target Users
-
-- High school students
-- University students
-- Technical professionals
-- Researchers and academics
-- Anyone who wants to focus on **content** rather than **formatting**
-
----
-
-## Contributing
-
-This is an Elix project. Contributions welcome via pull requests.
-
----
-
-## License
-
-MIT License - Free to use and modify.
-
----
-
-## Support
-
-If you encounter issues:
-
-1. Check [Troubleshooting](docs/guides/00_setup_complete.md#8-troubleshooting)
-2. Read the specific guide for your problem
-3. Open an issue on GitHub
+- Chocolatey Documentation: https://docs.chocolatey.org/
+- Pandoc User Guide: https://pandoc.org/MANUAL.html
+- MiKTeX Documentation: https://miktex.org/howto
+- VS Code Documentation: https://code.visualstudio.com/docs

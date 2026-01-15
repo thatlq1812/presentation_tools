@@ -27,9 +27,6 @@
     },
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
-  // Marp
-  "markdown.marp.enableHtml": true,
-  "markdown.marp.chromePath": "",
   // Copilot
   "github.copilot.enable": {
     "*": true,

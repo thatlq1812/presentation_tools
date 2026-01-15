@@ -29,7 +29,7 @@ desktop.ini
 *.fls
 *.synctex.gz
 
-# Node modules (if using marp-cli)
+# Node modules
 node_modules/
 package-lock.json
 

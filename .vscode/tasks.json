@@ -2,6 +2,23 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Create Timestamped Output Folder",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-Command",
+        "$timestamp = Get-Date -Format 'yyyyMMdd_HHmm'; $path = \"${workspaceFolder}/output/$timestamp\"; New-Item -ItemType Directory -Force -Path $path; New-Item -ItemType Directory -Force -Path \"$path/images\"; New-Item -ItemType File -Force -Path \"$path/images/.gitkeep\"; Write-Host \"Created output folder: $path\""
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Build PDF (Pandoc)",
       "type": "shell",
       "command": "pandoc",
@@ -93,34 +110,6 @@
       "problemMatcher": []
     },
     {
-      "label": "Export Marp Slides (PDF)",
-      "type": "shell",
-      "command": "npx",
-      "args": [
-        "@marp-team/marp-cli",
-        "${file}",
-        "--pdf",
-        "-o",
-        "${fileDirname}/output/${fileBasenameNoExtension}_slides.pdf"
-      ],
-      "group": "build",
-      "problemMatcher": []
-    },
-    {
-      "label": "Export Marp Slides (PPTX)",
-      "type": "shell",
-      "command": "npx",
-      "args": [
-        "@marp-team/marp-cli",
-        "${file}",
-        "--pptx",
-        "-o",
-        "${fileDirname}/output/${fileBasenameNoExtension}_slides.pptx"
-      ],
-      "group": "build",
-      "problemMatcher": []
-    },
-    {
       "label": "Build All (PDF + DOCX)",
       "dependsOn": [
         "Build PDF (Pandoc)",
@@ -132,18 +121,11 @@
     {
       "label": "Create Output Folder",
       "type": "shell",
-      "command": "mkdir",
+      "command": "powershell",
       "args": [
-        "-Force",
-        "${fileDirname}/output"
+        "-Command",
+        "New-Item -ItemType Directory -Force -Path '${fileDirname}/output'"
       ],
-      "windows": {
-        "command": "powershell",
-        "args": [
-          "-Command",
-          "New-Item -ItemType Directory -Force -Path '${fileDirname}/output'"
-        ]
-      },
       "problemMatcher": []
     }
   ]
