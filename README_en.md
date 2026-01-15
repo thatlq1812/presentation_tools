@@ -1,34 +1,34 @@
-# CÔNG CỤ TẠO NỘI DUNG - HƯỚNG DẪN CÀI ĐẶT
+# CONTENT GENERATION TOOL - SETUP GUIDE
 
-| Phiên Bản | Ngày | Tác Giả | Mô Tả |
+| Version | Date | Author | Description |
 | --- | --- | --- | --- |
-| 2.0.0 | 2026-01-15 | That Le | Viết lại hoàn toàn cho quy trình ticket-based |
+| 2.0.0 | 2026-01-15 | That Le | Complete rewrite for ticket-based workflow |
 
-## Mục Lục
+## Table of Contents
 
-1. [Tổng Quan](#tổng-quan)
-2. [Yêu Cầu Hệ Thống](#yêu-cầu-hệ-thống)
-3. [Bước 1: Cài Đặt Trình Quản Lý Gói](#bước-1-cài-đặt-trình-quản-lý-gói)
-4. [Bước 2: Cài Đặt Công Cụ Cốt Lõi](#bước-2-cài-đặt-công-cụ-cốt-lõi)
-5. [Bước 3: Cấu Hình VS Code](#bước-3-cấu-hình-vs-code)
-6. [Bước 4: Sử Dụng Quy Trình](#bước-4-sử-dụng-quy-trình)
-7. [Khắc Phục Sự Cố](#khắc-phục-sự-cố)
+1. [Overview](#overview)
+2. [System Requirements](#system-requirements)
+3. [Phase 1: Package Manager Installation](#phase-1-package-manager-installation)
+4. [Phase 2: Core Tools Installation](#phase-2-core-tools-installation)
+5. [Phase 3: VS Code Configuration](#phase-3-vs-code-configuration)
+6. [Phase 4: Workflow Usage](#phase-4-workflow-usage)
+7. [Troubleshooting](#troubleshooting)
 
 ---
 
-## Tổng Quan
+## Overview
 
-Công cụ này cung cấp quy trình chuẩn hóa để tạo nội dung học thuật (bài thuyết trình, báo cáo) với sự hỗ trợ của AI. Hệ thống sử dụng **phương pháp dựa trên phiếu yêu cầu** (ticket-based) - người dùng điền yêu cầu, AI Agent tạo nội dung có cấu trúc.
+This tool provides a standardized workflow for generating academic content (presentations, reports) using AI assistance. The system uses a **ticket-based approach** where users fill in requirements, and an AI Agent generates structured content.
 
-**Nguyên Tắc Cốt Lõi:**
+**Core Principles:**
 
-- Tách biệt: Phân tách việc tạo nội dung khỏi định dạng trình bày
-- Chuẩn hóa: Đảm bảo tư duy rõ ràng thông qua đầu vào có cấu trúc
-- Tái tạo: Môi trường nhất quán giữa tất cả người dùng
+- Decoupling: Separate content creation from presentation formatting
+- Standardization: Enforce clear thinking through structured input
+- Reproducibility: Consistent environment across all users
 
-**Tóm Tắt Quy Trình:**
+**Workflow Summary:**
 
-1. Người dùng điền `ticket_vi.md` với yêu cầu
+1. User fills in `ticket_en.md` with requirements
 2. AI Agent processes the ticket
 3. System generates output in timestamped folder (`output/YYYYMMDD_HHmm/`)
 4. Content follows predefined slide layout schemas
@@ -193,7 +193,7 @@ Option B - Download ZIP:
 
 ### Step 4.2: Create a New Ticket
 
-1. Open `ticket.md` in the root folder
+1. Open `ticket_en.md` in the root folder
 2. Duplicate it or edit directly
 3. Fill in all required sections:
    - Project Information
@@ -201,11 +201,12 @@ Option B - Download ZIP:
    - Constraints (Slide count, Detail level)
    - Key Sections (Outline)
    - Layout Strategy
+   - Source Data
 
 ### Step 4.3: Process Ticket with AI Agent
 
 1. Open GitHub Copilot Chat in VS Code
-2. Attach the `ticket.md` file
+2. Attach the `ticket_en.md` file
 3. Reference the `schemas/slide_layouts.md` for layout definitions
 4. Request content generation following the schema format
 
@@ -278,8 +279,10 @@ git config --global credential.helper manager
 
 ```
 presentation_tools/
-    README.md                       # This file (Setup guide)
-    ticket.md                       # Input template (bilingual)
+    README.md                       # This file (Vietnamese version)
+    README_en.md                    # This file (English version)
+    ticket_vi.md                    # Input template (Vietnamese)
+    ticket_en.md                    # Input template (English)
     .github/
         copilot-instructions.md     # AI Agent instructions
     schemas/
