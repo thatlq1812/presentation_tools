@@ -29,32 +29,32 @@ Công cụ này cung cấp quy trình chuẩn hóa để tạo nội dung học 
 **Tóm Tắt Quy Trình:**
 
 1. Người dùng điền `ticket_vi.md` với yêu cầu
-2. AI Agent processes the ticket
-3. System generates output in timestamped folder (`output/YYYYMMDD_HHmm/`)
-4. Content follows predefined slide layout schemas
+2. AI Agent xử lý phiếu yêu cầu
+3. Hệ thống tạo output trong thư mục có timestamp (`output/YYYYMMDD_HHmm/`)
+4. Nội dung tuân theo các schema layout slide định sẵn
 
 ---
 
-## System Requirements
+## Yêu Cầu Hệ Thống
 
-- Operating System: Windows 10/11 (64-bit)
-- RAM: Minimum 4GB (8GB recommended)
-- Disk Space: Minimum 5GB free space
-- Internet connection for initial setup
+- Hệ điều hành: Windows 10/11 (64-bit)
+- RAM: Tối thiểu 4GB (khuyến nghị 8GB)
+- Dung lượng đĩa: Tối thiểu 5GB trống
+- Kết nối internet cho cài đặt ban đầu
 
 ---
 
-## Phase 1: Package Manager Installation
+## Bước 1: Cài Đặt Trình Quản Lý Gói
 
-Chocolatey is a package manager for Windows that automates software installation. This ensures all users have identical environments.
+Chocolatey là trình quản lý gói cho Windows giúp tự động hóa việc cài đặt phần mềm. Điều này đảm bảo tất cả người dùng có môi trường giống hệt nhau.
 
-### Step 1.1: Open PowerShell as Administrator
+### Bước 1.1: Mở PowerShell với Quyền Quản Trị
 
-1. Press `Windows + X`
-2. Select "Windows PowerShell (Admin)" or "Terminal (Admin)"
-3. Click "Yes" when prompted by User Account Control
+1. Nhấn `Windows + X`
+2. Chọn "Windows PowerShell (Admin)" hoặc "Terminal (Admin)"
+3. Nhấp "Yes" khi được hỏi bởi User Account Control
 
-### Step 1.2: Install Chocolatey
+### Bước 1.2: Cài Đặt Chocolatey
 
 Copy and paste the following command into PowerShell:
 
@@ -74,65 +74,65 @@ Expected output: Version number (e.g., `2.2.2`)
 
 ---
 
-## Phase 2: Core Tools Installation
+## Bước 2: Cài Đặt Công Cụ Cốt Lõi
 
-Run the following commands in PowerShell (Admin). Each command installs a required tool.
+Chạy các lệnh sau trong PowerShell (Admin). Mỗi lệnh cài đặt một công cụ cần thiết.
 
-### Step 2.1: Install Git
+### Bước 2.1: Cài Đặt Git
 
-Git is required for version control and repository management.
+Git được yêu cầu cho quản lý phiên bản và repository.
 
 ```powershell
 choco install git -y
 ```
 
-Verify installation:
+Xác minh cài đặt:
 
 ```powershell
 git --version
 ```
 
-### Step 2.2: Install VS Code
+### Bước 2.2: Cài Đặt VS Code
 
-Visual Studio Code is the primary editor for this workflow.
+Visual Studio Code là trình soạn thảo chính cho quy trình này.
 
 ```powershell
 choco install vscode -y
 ```
 
-After installation, you may need to restart PowerShell or your computer.
+Sau khi cài đặt, bạn có thể cần khởi động lại PowerShell hoặc máy tính.
 
-### Step 2.3: Install Pandoc
+### Bước 2.3: Cài Đặt Pandoc
 
-Pandoc converts Markdown to PDF, DOCX, and other formats.
+Pandoc chuyển đổi Markdown sang PDF, DOCX và các định dạng khác.
 
 ```powershell
 choco install pandoc -y
 ```
 
-Verify installation:
+Xác minh cài đặt:
 
 ```powershell
 pandoc --version
 ```
 
-### Step 2.4: Install MiKTeX
+### Bước 2.4: Cài Đặt MiKTeX
 
-MiKTeX is a LaTeX distribution required for PDF generation with proper typography.
+MiKTeX là bộ phân phối LaTeX cần thiết để tạo PDF với typography đúng chuẩn.
 
 ```powershell
 choco install miktex -y
 ```
 
-**Important:** After installation, open MiKTeX Console and:
+**Quan trọng:** Sau khi cài đặt, mở MiKTeX Console và:
 
-1. Go to "Settings"
-2. Set "Install missing packages on-the-fly" to "Yes"
-3. Click "Check for updates" and install any available updates
+1. Vào "Settings"
+2. Đặt "Install missing packages on-the-fly" thành "Yes"
+3. Nhấp "Check for updates" và cài đặt các bản cập nhật có sẵn
 
-### Step 2.5: Install Node.js (Optional)
+### Bước 2.5: Cài Đặt Node.js (Tùy chọn)
 
-Required only if you plan to use additional scripting tools.
+Chỉ cần nếu bạn dự định sử dụng các công cụ scripting bổ sung.
 
 ```powershell
 choco install nodejs-lts -y
@@ -140,32 +140,32 @@ choco install nodejs-lts -y
 
 ---
 
-## Phase 3: VS Code Configuration
+## Bước 3: Cấu Hình VS Code
 
-### Step 3.1: Install Required Extensions
+### Bước 3.1: Cài Đặt Extensions Yêu Cầu
 
-Open VS Code and press `Ctrl + Shift + X` to open Extensions panel. Install:
+Mở VS Code và nhấn `Ctrl + Shift + X` để mở panel Extensions. Cài đặt:
 
-| Extension Name | Purpose |
+| Tên Extension | Mục Đích |
 | --- | --- |
-| Markdown All in One | Markdown editing and preview |
-| GitLens | Git integration and history |
-| Markdown Preview Enhanced | Advanced preview features |
+| Markdown All in One | Chỉnh sửa và xem trước Markdown |
+| GitLens | Tích hợp Git và lịch sử |
+| Markdown Preview Enhanced | Tính năng xem trước nâng cao |
 
-### Step 3.2: Configure Git Identity
+### Bước 3.2: Cấu Hình Danh Tính Git
 
-Open VS Code Terminal (`Ctrl + Backtick`) and run:
+Mở VS Code Terminal (`Ctrl + Backtick`) và chạy:
 
 ```bash
-git config --global user.name "Your Full Name"
-git config --global user.email "your.email@example.com"
+git config --global user.name "Họ Tên Đầy Đủ"
+git config --global user.email "email.cua.ban@example.com"
 ```
 
-### Step 3.3: Configure VS Code Settings
+### Bước 3.3: Cấu Hình Cài Đặt VS Code
 
-Press `Ctrl + ,` to open Settings. Search and configure:
+Nhấn `Ctrl + ,` để mở Settings. Tìm kiếm và cấu hình:
 
-| Setting | Value |
+| Cài Đặt | Giá Trị |
 | --- | --- |
 | `files.autoSave` | `afterDelay` |
 | `editor.wordWrap` | `on` |
@@ -174,136 +174,139 @@ Press `Ctrl + ,` to open Settings. Search and configure:
 
 ---
 
-## Phase 4: Workflow Usage
+## Bước 4: Sử Dụng Quy Trình
 
-### Step 4.1: Clone or Download Repository
+### Bước 4.1: Clone hoặc Tải Repository
 
-Option A - Clone with Git:
+Phương án A - Clone với Git:
 
 ```bash
 git clone <repository-url>
 cd presentation_tools
 ```
 
-Option B - Download ZIP:
+Phương án B - Tải ZIP:
 
-1. Download the repository as ZIP
-2. Extract to a folder of your choice
-3. Open the folder in VS Code
+1. Tải repository dưới dạng ZIP
+2. Giải nén vào thư mục bạn chọn
+3. Mở thư mục trong VS Code
 
-### Step 4.2: Create a New Ticket
+### Bước 4.2: Tạo Phiếu Yêu Cầu Mới
 
-1. Open `ticket.md` in the root folder
-2. Duplicate it or edit directly
-3. Fill in all required sections:
-   - Project Information
-   - Requirements (Topic, Audience, Tone)
-   - Constraints (Slide count, Detail level)
-   - Key Sections (Outline)
-   - Layout Strategy
+1. Mở `ticket_vi.md` trong thư mục gốc
+2. Nhân bản nó hoặc chỉnh sửa trực tiếp
+3. Điền tất cả các phần bắt buộc:
+   - Thông Tin Dự Án
+   - Yêu Cầu (Chủ đề, Đối tượng, Giọng văn)
+   - Ràng Buộc (Số slide, Mức độ chi tiết)
+   - Các Phần Chính (Dàn ý)
+   - Chiến Lược Layout
+   - Dữ Liệu Nguồn
 
-### Step 4.3: Process Ticket with AI Agent
+### Bước 4.3: Xử Lý Phiếu với AI Agent
 
-1. Open GitHub Copilot Chat in VS Code
-2. Attach the `ticket.md` file
-3. Reference the `schemas/slide_layouts.md` for layout definitions
-4. Request content generation following the schema format
+1. Mở GitHub Copilot Chat trong VS Code
+2. Đính kèm file `ticket_vi.md`
+3. Tham chiếu `schemas/slide_layouts.md` cho định nghĩa layout
+4. Yêu cầu tạo nội dung theo định dạng schema
 
-### Step 4.4: Review Output
+### Bước 4.4: Xem Lại Output
 
-Generated content will be placed in:
+Nội dung được tạo sẽ được đặt trong:
 
 ```
 output/YYYYMMDD_HHmm/
-    raw_content.md    # Structured content with layout tags
-    metadata.json     # Project metadata
+    raw_content.md    # Nội dung có cấu trúc với thẻ layout
+    metadata.json     # Metadata dự án
 ```
 
-### Step 4.5: Build Final Documents
+### Bước 4.5: Xây Dựng Tài Liệu Cuối Cùng
 
-Use VS Code tasks to convert content:
+Sử dụng tasks của VS Code để chuyển đổi nội dung:
 
-- `Ctrl + Shift + B` - Build PDF (default)
-- `Ctrl + Shift + P` then "Tasks: Run Task" then Select format
+- `Ctrl + Shift + B` - Build PDF (mặc định)
+- `Ctrl + Shift + P` sau đó "Tasks: Run Task" rồi chọn định dạng
 
 ---
 
-## Troubleshooting
+## Khắc Phục Sự Cố
 
-### Problem: Chocolatey command not found
+### Vấn đề: Lệnh Chocolatey không tìm thấy
 
-**Solution:** Restart PowerShell after installation. If still not working:
+**Giải pháp:** Khởi động lại PowerShell sau khi cài đặt. Nếu vẫn không hoạt động:
 
 ```powershell
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 ```
 
-### Problem: Pandoc PDF generation fails
+### Vấn đề: Pandoc tạo PDF thất bại
 
-**Solution:** Ensure MiKTeX is installed and configured:
+**Giải pháp:** Đảm bảo MiKTeX đã được cài đặt và cấu hình:
 
-1. Open MiKTeX Console
-2. Check for updates
-3. Enable "Install missing packages on-the-fly"
-4. Try building again
+1. Mở MiKTeX Console
+2. Kiểm tra cập nhật
+3. Bật "Install missing packages on-the-fly"
+4. Thử build lại
 
-### Problem: Git authentication fails
+### Vấn đề: Git xác thực thất bại
 
-**Solution:** Configure Git credential manager:
+**Giải pháp:** Cấu hình Git credential manager:
 
 ```bash
 git config --global credential.helper manager
 ```
 
-### Problem: VS Code cannot find Pandoc
+### Vấn đề: VS Code không tìm thấy Pandoc
 
-**Solution:** Add Pandoc to system PATH:
+**Giải pháp:** Thêm Pandoc vào system PATH:
 
-1. Open System Properties then Environment Variables
-2. Edit "Path" under System variables
-3. Add: `C:\Program Files\Pandoc`
-4. Restart VS Code
+1. Mở System Properties sau đó Environment Variables
+2. Chỉnh sửa "Path" dưới System variables
+3. Thêm: `C:\Program Files\Pandoc`
+4. Khởi động lại VS Code
 
-### Problem: LaTeX fonts missing
+### Vấn đề: Thiếu font LaTeX
 
-**Solution:** Install required fonts via MiKTeX:
+**Giải pháp:** Cài đặt các font cần thiết qua MiKTeX:
 
-1. Open MiKTeX Console
-2. Go to "Packages"
-3. Search and install: `times`, `fontspec`, `unicode-math`
+1. Mở MiKTeX Console
+2. Vào "Packages"
+3. Tìm và cài đặt: `times`, `fontspec`, `unicode-math`
 
 ---
 
-## Project Structure
+## Cấu Trúc Dự Án
 
 ```
 presentation_tools/
-    README.md                       # This file (Setup guide)
-    ticket.md                       # Input template (bilingual)
+    README.md                       # File này (Hướng dẫn cài đặt tiếng Việt)
+    README_en.md                    # Hướng dẫn cài đặt tiếng Anh
+    ticket_vi.md                    # Mẫu đầu vào (tiếng Việt)
+    ticket_en.md                    # Mẫu đầu vào (tiếng Anh)
     .github/
-        copilot-instructions.md     # AI Agent instructions
+        copilot-instructions.md     # Hướng dẫn cho AI Agent
     schemas/
-        slide_layouts.md            # 15 layout definitions
-        content_guidelines.md       # Content quality rules
+        slide_layouts.md            # 15 định nghĩa layout
+        content_guidelines.md       # Quy tắc chất lượng nội dung
     templates/
         pandoc/
-            reference.docx          # DOCX template
+            reference.docx          # Mẫu DOCX
     output/
-        YYYYMMDD_HHmm/              # Generated content folders
+        YYYYMMDD_HHmm/              # Thư mục nội dung được tạo
     scripts/
-        setup.sh                    # Setup script (Git Bash)
-        setup.ps1                   # Setup script (PowerShell)
+        setup.sh                    # Script cài đặt (Git Bash)
+        setup.ps1                   # Script cài đặt (PowerShell)
     examples/
-        example_generated_content.md  # Sample output
+        example_generated_content.md  # Output mẫu
 ```
 
 ---
 
-## Quick Setup (Automated)
+## Cài Đặt Nhanh (Tự Động)
 
-For users who prefer automated setup, run one of these scripts:
+Đối với người dùng muốn cài đặt tự động, chạy một trong các script sau:
 
-**PowerShell (Recommended for Windows):**
+**PowerShell (Khuyến nghị cho Windows):**
 ```powershell
 cd scripts
 .\setup.ps1
@@ -317,9 +320,9 @@ bash setup.sh
 
 ---
 
-## References
+## Tài Liệu Tham Khảo
 
-- Chocolatey Documentation: https://docs.chocolatey.org/
-- Pandoc User Guide: https://pandoc.org/MANUAL.html
-- MiKTeX Documentation: https://miktex.org/howto
-- VS Code Documentation: https://code.visualstudio.com/docs
+- Tài liệu Chocolatey: https://docs.chocolatey.org/
+- Hướng dẫn Pandoc: https://pandoc.org/MANUAL.html
+- Tài liệu MiKTeX: https://miktex.org/howto
+- Tài liệu VS Code: https://code.visualstudio.com/docs
